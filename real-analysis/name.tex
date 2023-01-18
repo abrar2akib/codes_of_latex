@@ -1,0 +1,64 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amsthm,amssymb,amsfonts}
+\usepackage[a4paper, total={6.5in, 10.2in}]{geometry}
+\usepackage{graphicx}
+\usepackage{charter}
+\usepackage{float}
+\usepackage{enumerate}
+\usepackage{tikz}
+\usepackage{cleveref,color}
+\usepackage[most]{tcolorbox}
+
+\makeatletter
+\newcommand{\getCurrentSectionNumber}{%
+  \ifnum\c@section=0 %
+  \thechapter
+  \else
+  \ifnum\c@subsection=0 %
+  \thesection
+  \else
+  \ifnum\c@subsubsection=0 %
+  \thesubsection
+  \else
+  \thesubsubsection
+  \fi
+  \fi
+  \fi
+}
+\makeatother
+
+
+
+\newenvironment{theorem}[2]
+{\begin{tcolorbox}[colback=red!5!white, colframe=blue!70!white,title={#1}\getCurrentSectionNumber]{#2}
+\end{tcolorbox}}
+
+\newcounter{inbox}[section]
+\newenvironment{inbox}[3][]
+{\refstepcounter{inbox}\begin{tcolorbox}[colback=red!5!white, colframe=blue!70!white,title={#2},\textbf{Inbox~\theinbox. #1}]{#3}
+\end{tcolorbox}}
+
+\newenvironment{important}[2]
+{\begin{flushleft} \textbf{#2} \color{#1}}
+{\end{flushleft}}
+
+\begin{document}
+\begin{inbox}{small title}
+    Title is it
+\end{inbox}
+
+\section{hello}
+    \theorem{This is a theorem}{this is tcolorbox}
+\subsection{hg}
+\theorem{first arg titile}
+\section{wow}
+    \theorem{This is a theorem}{this is tcolorbox}
+\begin{theorem}
+    ghgdjklf
+\end{theorem}
+
+\begin{important}{blue}{peteer}
+    this is a text
+\end{important}
+\end{document}
